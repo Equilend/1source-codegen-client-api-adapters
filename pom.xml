@@ -28,6 +28,14 @@
 		</developer>
 	</developers>
 
+	<repositories>
+		<repository>
+			<id>private-repo</id>
+			<url>
+				https://maven.pkg.github.com/Equilend/1source-codegen-client-api</url>
+		</repository>
+	</repositories>
+
 	<build>
 		<plugins>
 			<plugin>
