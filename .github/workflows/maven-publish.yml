@@ -20,10 +20,12 @@ jobs:
       - name: maven-settings
         uses: s4u/maven-settings-action@v2
         with:
-          servers: ${{ secrets.GH_PAT_FOR_ACTIONS_TOKEN}}
+          servers: '[{"id": "github", "username": "mdschoen", "password": "${GITHUB_TOKEN_REF}"}]'
     
       - name: Build with Maven
         run: mvn -B package --file pom.xml
+        env:
+          GITHUB_TOKEN_REF: ${{ secrets.GH_PAT_FOR_ACTIONS_TOKEN}}
 
       - name: Publish to GitHub Packages Apache Maven
         run: mvn deploy -s $GITHUB_WORKSPACE/settings.xml
