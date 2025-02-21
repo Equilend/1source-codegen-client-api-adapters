@@ -175,23 +175,6 @@
 				</dependency>
 			</dependencies>
 		</profile>
-		<profile>
-			<id>github</id>
-			<repositories>
-				<repository>
-					<id>github</id>
-					<name>GitHub Packages</name>
-					<url>
-						https://maven.pkg.github.com/Equilend/1source-codegen-client-api</url>
-					<snapshots>
-						<enabled>true</enabled>
-					</snapshots>
-					<releases>
-						<enabled>true</enabled>
-					</releases>
-				</repository>
-			</repositories>
-		</profile>
 	</profiles>
 
 	<dependencies>
