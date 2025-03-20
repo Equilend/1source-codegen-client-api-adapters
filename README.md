@@ -4,7 +4,7 @@
 ## Requirements
 
 Building the API client adapter library requires:
-1. Java 11+
+1. Java 17+
 2. Maven/Gradle
 
 ## Installation
@@ -31,7 +31,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.os</groupId>
   <artifactId>1source-api-client-adapters</artifactId>
-  <version>1.2.1</version>
+  <version>1.2.1.2</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -82,7 +82,7 @@ Also, to use the GitHub Packages repository for downloading SNAPSHOT artifacts, 
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.os:1source-api-client:1.2.1"
+compile "com.os:1source-api-client:1.2.1.2"
 ```
 
 Add the repository to your build.gradle file (Gradle Groovy). Replace USERNAME with your GitHub username, and TOKEN with your personal access token that has read:packages permission.
@@ -108,6 +108,6 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/1source-api-client-adapters-1.2.1.jar`
+* `target/1source-api-client-adapters-1.2.1.2.jar`
 * `target/lib/*.jar`
 
