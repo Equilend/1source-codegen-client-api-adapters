@@ -10,13 +10,15 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.os.client.model.AnyOfLoanDeclineErrorResponseErrorsItems;
+import com.os.client.model.CollateralType;
 import com.os.client.model.CurrencyCd;
 import com.os.client.model.LoanCancelErrorReason;
 import com.os.client.model.LoanCancelErrorResponse;
-import com.os.client.model.LoanCancelPendingErrorReason;
-import com.os.client.model.LoanCancelPendingErrorResponse;
 import com.os.client.model.LoanDeclineErrorReason;
 import com.os.client.model.LoanDeclineErrorReasonFieldBillingCurrency;
+import com.os.client.model.LoanDeclineErrorReasonFieldCollateralCurrency;
+import com.os.client.model.LoanDeclineErrorReasonFieldCollateralMargin;
+import com.os.client.model.LoanDeclineErrorReasonFieldCollateralType;
 import com.os.client.model.LoanDeclineErrorReasonFieldDividendRate;
 import com.os.client.model.LoanDeclineErrorReasonFieldQuantity;
 import com.os.client.model.LoanDeclineErrorReasonFieldRate;
@@ -80,16 +82,16 @@ public class LoanStatusDeserializer extends StdDeserializer<OneOfLoanLoanStatusR
 								}
 								responseErrors.add(loanDeclineErrorReasonFieldBillingCurrency);
 								
-//							} else if (LoanDeclineErrorReasonFieldCollateralCurrency.FieldEnum
-//									.fromValue(field) != null) {
-//
-//								LoanDeclineErrorReasonFieldCollateralCurrency loanDeclineErrorReasonFieldCollateralCurrency = new LoanDeclineErrorReasonFieldCollateralCurrency();
-//								loanDeclineErrorReasonFieldCollateralCurrency.setField(LoanDeclineErrorReasonFieldCollateralCurrency.FieldEnum.fromValue(field));
-//								if (nodeValue != null) {
-//									loanDeclineErrorReasonFieldCollateralCurrency.setExpectedValue(CurrencyCd.fromValue(nodeValue.textValue()));
-//								}
-//								responseErrors.add(loanDeclineErrorReasonFieldCollateralCurrency);
-//
+							} else if (LoanDeclineErrorReasonFieldCollateralCurrency.FieldEnum
+									.fromValue(field) != null) {
+
+								LoanDeclineErrorReasonFieldCollateralCurrency loanDeclineErrorReasonFieldCollateralCurrency = new LoanDeclineErrorReasonFieldCollateralCurrency();
+								loanDeclineErrorReasonFieldCollateralCurrency.setField(LoanDeclineErrorReasonFieldCollateralCurrency.FieldEnum.fromValue(field));
+								if (nodeValue != null) {
+									loanDeclineErrorReasonFieldCollateralCurrency.setExpectedValue(CurrencyCd.fromValue(nodeValue.textValue()));
+								}
+								responseErrors.add(loanDeclineErrorReasonFieldCollateralCurrency);
+
 							} else if (LoanDeclineErrorReasonFieldQuantity.FieldEnum.fromValue(field) != null) {
 
 								LoanDeclineErrorReasonFieldQuantity loanDeclineErrorReasonFieldQuantity = new LoanDeclineErrorReasonFieldQuantity();
@@ -109,24 +111,24 @@ public class LoanStatusDeserializer extends StdDeserializer<OneOfLoanLoanStatusR
 								}
 								responseErrors.add(loanDeclineErrorReasonFieldRate);
 								
-//							} else if (LoanDeclineErrorReasonFieldCollateralMargin.FieldEnum.fromValue(field) != null) {
-//
-//								LoanDeclineErrorReasonFieldCollateralMargin loanDeclineErrorReasonFieldCollateralMargin = new LoanDeclineErrorReasonFieldCollateralMargin();
-//								loanDeclineErrorReasonFieldCollateralMargin.setField(LoanDeclineErrorReasonFieldCollateralMargin.FieldEnum.fromValue(field));
-//								if (nodeValue != null) {
-//									loanDeclineErrorReasonFieldCollateralMargin.setExpectedValue(nodeValue.doubleValue());
-//								}
-//								responseErrors.add(loanDeclineErrorReasonFieldCollateralMargin);
-//
-//							} else if (LoanDeclineErrorReasonFieldCollateralType.FieldEnum.fromValue(field) != null) {
-//
-//								LoanDeclineErrorReasonFieldCollateralType loanDeclineErrorReasonFieldCollateralType = new LoanDeclineErrorReasonFieldCollateralType();
-//								loanDeclineErrorReasonFieldCollateralType.setField(LoanDeclineErrorReasonFieldCollateralType.FieldEnum.fromValue(field));
-//								if (nodeValue != null) {
-//									loanDeclineErrorReasonFieldCollateralType.setExpectedValue(CollateralType.fromValue(nodeValue.textValue()));
-//								}
-//								responseErrors.add(loanDeclineErrorReasonFieldCollateralType);
-//
+							} else if (LoanDeclineErrorReasonFieldCollateralMargin.FieldEnum.fromValue(field) != null) {
+
+								LoanDeclineErrorReasonFieldCollateralMargin loanDeclineErrorReasonFieldCollateralMargin = new LoanDeclineErrorReasonFieldCollateralMargin();
+								loanDeclineErrorReasonFieldCollateralMargin.setField(LoanDeclineErrorReasonFieldCollateralMargin.FieldEnum.fromValue(field));
+								if (nodeValue != null) {
+									loanDeclineErrorReasonFieldCollateralMargin.setExpectedValue(nodeValue.doubleValue());
+								}
+								responseErrors.add(loanDeclineErrorReasonFieldCollateralMargin);
+
+							} else if (LoanDeclineErrorReasonFieldCollateralType.FieldEnum.fromValue(field) != null) {
+
+								LoanDeclineErrorReasonFieldCollateralType loanDeclineErrorReasonFieldCollateralType = new LoanDeclineErrorReasonFieldCollateralType();
+								loanDeclineErrorReasonFieldCollateralType.setField(LoanDeclineErrorReasonFieldCollateralType.FieldEnum.fromValue(field));
+								if (nodeValue != null) {
+									loanDeclineErrorReasonFieldCollateralType.setExpectedValue(CollateralType.fromValue(nodeValue.textValue()));
+								}
+								responseErrors.add(loanDeclineErrorReasonFieldCollateralType);
+
 							} else if (LoanDeclineErrorReasonFieldDividendRate.FieldEnum.fromValue(field) != null) {
 
 								LoanDeclineErrorReasonFieldDividendRate loanDeclineErrorReasonFieldDividendRate = new LoanDeclineErrorReasonFieldDividendRate();
@@ -146,15 +148,6 @@ public class LoanStatusDeserializer extends StdDeserializer<OneOfLoanLoanStatusR
 								}
 								responseErrors.add(loanDeclineErrorReasonFieldSettlementDate);
 
-//							} else if (LoanDeclineErrorReasonFieldSettlementType.FieldEnum.fromValue(field) != null) {
-//
-//								LoanDeclineErrorReasonFieldSettlementType loanDeclineErrorReasonFieldSettlementType = new LoanDeclineErrorReasonFieldSettlementType();
-//								loanDeclineErrorReasonFieldSettlementType.setField(LoanDeclineErrorReasonFieldSettlementType.FieldEnum.fromValue(field));
-//								if (nodeValue != null) {
-//									loanDeclineErrorReasonFieldSettlementType.setExpectedValue(SettlementType.fromValue(nodeValue.textValue()));
-//								}
-//								responseErrors.add(loanDeclineErrorReasonFieldSettlementType);
-//
 							} else if (LoanDeclineErrorReasonFieldTradeDate.FieldEnum.fromValue(field) != null) {
 
 								LoanDeclineErrorReasonFieldTradeDate loanDeclineErrorReasonFieldTradeDate = new LoanDeclineErrorReasonFieldTradeDate();
@@ -199,14 +192,6 @@ public class LoanStatusDeserializer extends StdDeserializer<OneOfLoanLoanStatusR
 				loanCancelErrorResponse.setReason(LoanCancelErrorReason.fromValue(nodeReason.textValue()));
 
 				impl = loanCancelErrorResponse;
-
-			} else if (LoanCancelPendingErrorReason.fromValue(nodeReason.textValue()) != null) {
-
-				LoanCancelPendingErrorResponse loanCancelPendingErrorResponse = new LoanCancelPendingErrorResponse();
-				loanCancelPendingErrorResponse
-						.setReason(LoanCancelPendingErrorReason.fromValue(nodeReason.textValue()));
-
-				impl = loanCancelPendingErrorResponse;
 
 			}
 		}
