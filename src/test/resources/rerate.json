@@ -1,0 +1,57 @@
+{
+	"rerateId": "f79d56a2-9fef-455f-a346-3d15185589cc",
+	"loanId": "72ab2737-1337-4cc2-b924-da958781d31e",
+	"status": "DECLINED",
+	"rerateStatusReason": {
+		"reason": "INCORRECT_RERATE_INFO",
+		"errors": [
+			{
+				"field": "RERATE",
+				"expectedValue": {
+					"rebate": {
+						"floating": {
+							"benchmark": "OBFR",
+							"spread": 136,
+							"isAutoRerate": true,
+							"effectiveDate": "2025-03-21"
+						}
+					}
+				}
+			}
+		]
+	},
+	"dateProposed": "2025-03-21",
+	"rate": {
+		"rebate": {
+			"floating": {
+				"benchmark": "OBFR",
+				"baseRate": 4.33,
+				"spread": 121,
+				"isAutoRerate": true,
+				"effectiveDate": "2024-12-20",
+				"effectiveRate": 125.33,
+				"rerateCutoffTime": "18:00:00"
+			}
+		}
+	},
+	"rerate": {
+		"rebate": {
+			"floating": {
+				"benchmark": "OBFR",
+				"spread": 126,
+				"isAutoRerate": true,
+				"effectiveDate": "2025-03-21"
+			}
+		}
+	},
+	"lastUpdateDateTime": "2025-03-21T11:34:46.686Z",
+	"executionVenue": {
+		"party": {
+			"partyId": "TLEN-US-2",
+			"gleifLei": "KTB500SKZSDI75VSFU45",
+			"partyType": "VENUE"
+		},
+		"type": "OFFPLATFORM",
+		"venueRefKey": "CONSOLE1742556881358"
+	}
+}
