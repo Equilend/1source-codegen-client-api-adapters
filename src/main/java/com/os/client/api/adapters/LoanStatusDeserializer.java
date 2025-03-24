@@ -107,7 +107,7 @@ public class LoanStatusDeserializer extends StdDeserializer<OneOfLoanLoanStatusR
 								loanDeclineErrorReasonFieldRate.setField(LoanDeclineErrorReasonFieldRate.FieldEnum.fromValue(field));
 								if (nodeValue != null) {
 									RateDeserializer deserializer = new RateDeserializer();
-									loanDeclineErrorReasonFieldRate.setExpectedValue(deserializer.deserialize(nodeValue));
+									loanDeclineErrorReasonFieldRate.setExpectedValue(deserializer.deserializeLoanRate(nodeValue));
 								}
 								responseErrors.add(loanDeclineErrorReasonFieldRate);
 								
