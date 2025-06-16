@@ -36,9 +36,9 @@ public class RerateStatusDeserializer extends StdDeserializer<OneOfRerateStatusR
 
 		OneOfRerateStatusReason impl = null;
 
-		JsonNode nodeLoanStatusReason = p.readValueAsTree();
+		JsonNode nodeRerateStatusReason = p.readValueAsTree();
 
-		JsonNode nodeReason = nodeLoanStatusReason.get("reason");
+		JsonNode nodeReason = nodeRerateStatusReason.get("reason");
 		if (nodeReason != null) {
 
 			if (RerateDeclineErrorReason.fromValue(nodeReason.textValue()) != null) {
@@ -46,7 +46,11 @@ public class RerateStatusDeserializer extends StdDeserializer<OneOfRerateStatusR
 				RerateDeclineErrorResponse rerateDeclineErrorResponse = new RerateDeclineErrorResponse();
 				rerateDeclineErrorResponse.setReason(RerateDeclineErrorReason.fromValue(nodeReason.textValue()));
 
-				JsonNode error = nodeLoanStatusReason.get("error");
+				JsonNode error = nodeRerateStatusReason.get("error");
+				if (error == null) {
+					error = nodeRerateStatusReason.get("errors");
+				}
+				
 				if (error != null) {
 
 					JsonNode nodeField = error.get("field");
