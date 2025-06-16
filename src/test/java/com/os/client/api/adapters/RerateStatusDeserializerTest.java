@@ -72,25 +72,22 @@ public class RerateStatusDeserializerTest {
 	public void rerateStatusReasonDeclineError() {
 		OneOfRerateRerateStatusReason reason = rerate.getRerateStatusReason();
 		RerateDeclineErrorResponse error = (RerateDeclineErrorResponse) reason;
-		List<RerateDeclineErrorReasonFieldValue> errors = error.getErrors();
-		assertEquals(errors.size(), 1);
+		assertNotNull(error);
 	}
 
 	@Test
 	public void rerateStatusReasonDeclineErrorType() {
 		OneOfRerateRerateStatusReason reason = rerate.getRerateStatusReason();
 		RerateDeclineErrorResponse errorResponse = (RerateDeclineErrorResponse) reason;
-		List<RerateDeclineErrorReasonFieldValue> errors = errorResponse.getErrors();
-		RerateDeclineErrorReasonFieldValue error = errors.get(0);
-		assertEquals(error.getField(), RerateDeclineErrorReasonFieldType.RERATE);
+		RerateDeclineErrorReasonFieldValue error = errorResponse.getError();
+		assertEquals(error.getField(), RerateDeclineErrorReasonFieldType.RERATE_VALUE);
 	}
 
 	@Test
 	public void rerateStatusReasonDeclineErrorValue() {
 		OneOfRerateRerateStatusReason reason = rerate.getRerateStatusReason();
 		RerateDeclineErrorResponse errorResponse = (RerateDeclineErrorResponse) reason;
-		List<RerateDeclineErrorReasonFieldValue> errors = errorResponse.getErrors();
-		RerateDeclineErrorReasonFieldValue error = errors.get(0);
+		RerateDeclineErrorReasonFieldValue error = errorResponse.getError();
 		RebateRate rebateRate = (RebateRate)error.getExpectedValue();
 		FloatingRate floatingRate = (FloatingRate)rebateRate.getRebate();
 		assertEquals(floatingRate.getFloating().getSpread().doubleValue(), 136, 0);
