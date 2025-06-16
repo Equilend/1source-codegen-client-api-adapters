@@ -1,12 +1,13 @@
 package com.os.client.api.adapters;
 
 import java.io.IOException;
+
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
-import com.os.client.model.OneOfRerateRerateStatusReason;
+import com.os.client.model.OneOfRerateStatusReason;
 import com.os.client.model.RerateCancelErrorReason;
 import com.os.client.model.RerateCancelErrorResponse;
 import com.os.client.model.RerateDeclineErrorReason;
@@ -14,7 +15,7 @@ import com.os.client.model.RerateDeclineErrorReasonFieldType;
 import com.os.client.model.RerateDeclineErrorReasonFieldValue;
 import com.os.client.model.RerateDeclineErrorResponse;
 
-public class RerateStatusDeserializer extends StdDeserializer<OneOfRerateRerateStatusReason> {
+public class RerateStatusDeserializer extends StdDeserializer<OneOfRerateStatusReason> {
 
 	/**
 	 * 
@@ -30,10 +31,10 @@ public class RerateStatusDeserializer extends StdDeserializer<OneOfRerateRerateS
 	}
 
 	@Override
-	public OneOfRerateRerateStatusReason deserialize(JsonParser p, DeserializationContext ctxt)
+	public OneOfRerateStatusReason deserialize(JsonParser p, DeserializationContext ctxt)
 			throws IOException, JsonProcessingException {
 
-		OneOfRerateRerateStatusReason impl = null;
+		OneOfRerateStatusReason impl = null;
 
 		JsonNode nodeLoanStatusReason = p.readValueAsTree();
 

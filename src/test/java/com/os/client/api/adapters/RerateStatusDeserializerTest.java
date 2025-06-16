@@ -7,8 +7,6 @@ import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.OffsetDateTime;
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -19,7 +17,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.os.client.model.FloatingRate;
 import com.os.client.model.OneOfLoanLoanStatusReason;
-import com.os.client.model.OneOfRerateRerateStatusReason;
+import com.os.client.model.OneOfRerateStatusReason;
 import com.os.client.model.Rate;
 import com.os.client.model.RebateRate;
 import com.os.client.model.Rerate;
@@ -38,7 +36,7 @@ public class RerateStatusDeserializerTest {
 				.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 				.registerModule(new SimpleModule().addDeserializer(Rate.class, new RateDeserializer()))
 				.registerModule(new SimpleModule().addDeserializer(OneOfLoanLoanStatusReason.class, new LoanStatusDeserializer()))
-				.registerModule(new SimpleModule().addDeserializer(OneOfRerateRerateStatusReason.class, new RerateStatusDeserializer()))
+				.registerModule(new SimpleModule().addDeserializer(OneOfRerateStatusReason.class, new RerateStatusDeserializer()))
 				.registerModule(new SimpleModule().addDeserializer(LocalDate.class, new LocalDateJacksonDeserializer()))
 				.registerModule(new SimpleModule().addDeserializer(OffsetDateTime.class, new OffsetDateTimeJacksonDeserializer()));
 		
@@ -57,27 +55,27 @@ public class RerateStatusDeserializerTest {
 
 	@Test
 	public void rerateStatusReason() {
-		OneOfRerateRerateStatusReason reason = rerate.getRerateStatusReason();
+		OneOfRerateStatusReason reason = rerate.getStatusReason();
 		assertNotNull(reason);
 	}
 
 	@Test
 	public void rerateStatusReasonDecline() {
-		OneOfRerateRerateStatusReason reason = rerate.getRerateStatusReason();
+		OneOfRerateStatusReason reason = rerate.getStatusReason();
 		RerateDeclineErrorResponse error = (RerateDeclineErrorResponse) reason;
 		assertEquals(error.getReason(), RerateDeclineErrorReason.INCORRECT_RERATE_INFO);
 	}
 
 	@Test
 	public void rerateStatusReasonDeclineError() {
-		OneOfRerateRerateStatusReason reason = rerate.getRerateStatusReason();
+		OneOfRerateStatusReason reason = rerate.getStatusReason();
 		RerateDeclineErrorResponse error = (RerateDeclineErrorResponse) reason;
 		assertNotNull(error);
 	}
 
 	@Test
 	public void rerateStatusReasonDeclineErrorType() {
-		OneOfRerateRerateStatusReason reason = rerate.getRerateStatusReason();
+		OneOfRerateStatusReason reason = rerate.getStatusReason();
 		RerateDeclineErrorResponse errorResponse = (RerateDeclineErrorResponse) reason;
 		RerateDeclineErrorReasonFieldValue error = errorResponse.getError();
 		assertEquals(error.getField(), RerateDeclineErrorReasonFieldType.RERATE_VALUE);
@@ -85,7 +83,7 @@ public class RerateStatusDeserializerTest {
 
 	@Test
 	public void rerateStatusReasonDeclineErrorValue() {
-		OneOfRerateRerateStatusReason reason = rerate.getRerateStatusReason();
+		OneOfRerateStatusReason reason = rerate.getStatusReason();
 		RerateDeclineErrorResponse errorResponse = (RerateDeclineErrorResponse) reason;
 		RerateDeclineErrorReasonFieldValue error = errorResponse.getError();
 		RebateRate rebateRate = (RebateRate)error.getExpectedValue();
