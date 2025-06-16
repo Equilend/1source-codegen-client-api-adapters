@@ -2,7 +2,7 @@
 	"rerateId": "f79d56a2-9fef-455f-a346-3d15185589cc",
 	"loanId": "72ab2737-1337-4cc2-b924-da958781d31e",
 	"status": "DECLINED",
-	"rerateStatusReason": {
+	"statusReason": {
 		"reason": "INCORRECT_RERATE_INFO",
 		"error":
 			{
