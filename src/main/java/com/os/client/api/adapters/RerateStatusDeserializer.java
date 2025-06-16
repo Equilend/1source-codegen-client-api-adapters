@@ -1,9 +1,6 @@
 package com.os.client.api.adapters;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
@@ -48,34 +45,27 @@ public class RerateStatusDeserializer extends StdDeserializer<OneOfRerateRerateS
 				RerateDeclineErrorResponse rerateDeclineErrorResponse = new RerateDeclineErrorResponse();
 				rerateDeclineErrorResponse.setReason(RerateDeclineErrorReason.fromValue(nodeReason.textValue()));
 
-				JsonNode errors = nodeLoanStatusReason.get("errors");
-				if (errors != null && errors.isArray()) {
+				JsonNode error = nodeLoanStatusReason.get("error");
+				if (error != null) {
 
-					List<RerateDeclineErrorReasonFieldValue> responseErrors = new ArrayList<>();
+					JsonNode nodeField = error.get("field");
+					if (nodeField != null) {
 
-					for (JsonNode error : errors) {
-						JsonNode nodeField = error.get("field");
-						if (nodeField != null) {
+						String field = nodeField.textValue();
 
-							String field = nodeField.textValue();
-							
-							JsonNode nodeValue = error.get("expectedValue");
+						JsonNode nodeValue = error.get("expectedValue");
 
-							if (RerateDeclineErrorReasonFieldType.fromValue(field) != null) {
+						if (RerateDeclineErrorReasonFieldType.fromValue(field) != null) {
 
-								RerateDeclineErrorReasonFieldValue rerateDeclineErrorReasonFieldValue = new RerateDeclineErrorReasonFieldValue();
-								rerateDeclineErrorReasonFieldValue.setField(RerateDeclineErrorReasonFieldType.fromValue(field));
-								if (nodeValue != null) {
-									RateDeserializer deserializer = new RateDeserializer();
-									rerateDeclineErrorReasonFieldValue.setExpectedValue(deserializer.deserializeRerateRate(nodeValue));
-								}
-								responseErrors.add(rerateDeclineErrorReasonFieldValue);
-								
+							RerateDeclineErrorReasonFieldValue rerateDeclineErrorReasonFieldValue = new RerateDeclineErrorReasonFieldValue();
+							rerateDeclineErrorReasonFieldValue.setField(RerateDeclineErrorReasonFieldType.fromValue(field));
+							if (nodeValue != null) {
+								RateDeserializer deserializer = new RateDeserializer();
+								rerateDeclineErrorReasonFieldValue.setExpectedValue(deserializer.deserializeRerateRate(nodeValue));
 							}
+							rerateDeclineErrorResponse.setError(rerateDeclineErrorReasonFieldValue);
 						}
 					}
-					
-					rerateDeclineErrorResponse.setErrors(responseErrors);
 				}
 				
 				impl = rerateDeclineErrorResponse;

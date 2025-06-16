@@ -4,9 +4,9 @@
 	"status": "DECLINED",
 	"rerateStatusReason": {
 		"reason": "INCORRECT_RERATE_INFO",
-		"errors": [
+		"error":
 			{
-				"field": "RERATE",
+				"field": "RERATE_VALUE",
 				"expectedValue": {
 					"rebate": {
 						"floating": {
@@ -18,7 +18,7 @@
 					}
 				}
 			}
-		]
+		
 	},
 	"dateProposed": "2025-03-21",
 	"rate": {
