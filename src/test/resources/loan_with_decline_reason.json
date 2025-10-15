@@ -1,0 +1,143 @@
+{
+	"loanId": "669572d4-3e6e-4155-9667-23d034894266",
+	"loanCorrelationId": "1SOBXMMKD2ZL2Q",
+	"lastEvent": {
+		"eventId": 16966000000767372,
+		"eventType": "LOAN_DECLINED",
+		"eventDateTime": "2025-09-26T15:59:52.961Z",
+		"resourceUri": "/v1/ledger/loans/669572d4-3e6e-4155-9667-23d034894266"
+	},
+	"loanStatus": "DECLINED",
+	"loanStatusReason": {
+		"reason": "INCORRECT_LOAN_INFO",
+		"errors": [
+			{
+				"field": "BILLING_CURRENCY",
+				"expectedValue": "USD"
+			},
+			{
+				"field": "CCP_INDICATOR",
+				"expectedValue": "OCC_HEDGE"
+			},
+			{
+				"field": "COLLATERAL_CURRENCY",
+				"expectedValue": "USD"
+			},
+			{
+				"field": "COLLATERAL_MARGIN",
+				"expectedValue": 0
+			},
+			{
+				"field": "DIVIDEND_RATE",
+				"expectedValue": 0
+			},
+			{
+				"field": "RESET_DATE",
+				"expectedValue": "2025-10-14"
+			},
+			{
+				"field": "SETTLEMENT",
+				"expectedValue": {
+					"partyRole": "BORROWER",
+					"settlementStatus": "NONE",
+					"internalAccountCode": "string",
+					"instruction": {
+						"settlementBic": "string",
+						"localAgentBic": "string",
+						"localAgentName": "string",
+						"localAgentAccount": "string",
+						"dtcParticipantNumber": "string",
+						"cdsCustomerUnitId": "string",
+						"custodianName": "string",
+						"custodianBic": "string",
+						"custodianAccount": "string"
+					}
+				}
+			},
+			{
+				"field": "SETTLEMENT_TYPE",
+				"expectedValue": "DVP"
+			},
+			{
+				"field": "TERM_DATE",
+				"expectedValue": "2025-10-14"
+			},
+			{
+				"field": "TERM_TYPE",
+				"expectedValue": "OPEN"
+			}
+		]
+	},
+	"lastUpdateDateTime": "2025-09-26T15:59:52.961Z",
+	"isInitiator": false,
+	"trade": {
+		"venues": [],
+		"instrument": {
+			"ticker": "TSLA",
+			"cusip": "88160R101",
+			"isin": "US88160R1014",
+			"sedol": "B616C79",
+			"figi": "BBG000N9MNX3",
+			"description": "TESLA INC COM ",
+			"marketCode": "US"
+		},
+		"rate": {
+			"rebate": {
+				"fixed": {
+					"baseRate": 4.0000000000,
+					"effectiveDate": "2025-09-26",
+					"effectiveRate": 4.0000000000
+				}
+			}
+		},
+		"quantity": 300,
+		"billingCurrency": "USD",
+		"dividendRatePct": 100.0000000000,
+		"tradeDate": "2025-09-26",
+		"termType": "OPEN",
+		"settlementDate": "2025-09-26",
+		"settlementType": "DVP",
+		"doNotInstruct": false,
+		"collateral": {
+			"contractPrice": 129570.0000000000,
+			"collateralValue": 129570.00,
+			"collateralCurrency": "USD",
+			"collateralType": "CASH",
+			"roundingRule": 5,
+			"roundingMode": "ALWAYSUP",
+			"minimumMarkPrice": 1.0000000000,
+			"collateralMargin": 102.00
+		},
+		"transactingParties": [
+			{
+				"partyRole": "BORROWER",
+				"party": {
+					"partyId": "NBFI-DTC-US",
+					"partyName": "National Bank Financial Inc.",
+					"partyType": "CLIENT",
+					"gleifLei": "549300D83GR71RNG0O65"
+				}
+			},
+			{
+				"partyRole": "LENDER",
+				"party": {
+					"partyId": "BNY-DTC-US",
+					"partyName": "The Bank of New York Mellon",
+					"partyType": "CLIENT",
+					"gleifLei": "HPFHU0OQ28E4N0NFVK49"
+				}
+			}
+		]
+	},
+	"settlement": [
+		{
+			"partyRole": "LENDER",
+			"settlementStatus": "NONE",
+			"internalAccountCode": "901",
+			"instruction": {
+				"settlementBic": "DTCYUS33",
+				"dtcParticipantNumber": "5008"
+			}
+		}
+	]
+}

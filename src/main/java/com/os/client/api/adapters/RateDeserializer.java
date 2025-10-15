@@ -15,7 +15,6 @@ import com.os.client.model.FixedRate;
 import com.os.client.model.FixedRateDef;
 import com.os.client.model.FloatingRate;
 import com.os.client.model.FloatingRateDef;
-import com.os.client.model.OneOfLoanDeclineErrorReasonFieldRateExpectedValue;
 import com.os.client.model.OneOfRerateDeclineErrorReasonFieldValueExpectedValue;
 import com.os.client.model.Rate;
 import com.os.client.model.RebateRate;
@@ -152,10 +151,6 @@ public class RateDeserializer extends StdDeserializer<Rate> {
 		}
 
 		return impl;
-	}
-
-	public OneOfLoanDeclineErrorReasonFieldRateExpectedValue deserializeLoanRate(JsonNode n) throws IOException, JsonProcessingException {
-		return (OneOfLoanDeclineErrorReasonFieldRateExpectedValue)deserialize(n);
 	}
 
 	public OneOfRerateDeclineErrorReasonFieldValueExpectedValue deserializeRerateRate(JsonNode n) throws IOException, JsonProcessingException {

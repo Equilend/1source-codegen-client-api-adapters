@@ -1,0 +1,60 @@
+{
+  "reason": "INCORRECT_LOAN_INFO",
+  "errors": [
+    {
+      "field": "BILLING_CURRENCY",
+      "expectedValue": "USD"
+    },
+    {
+      "field": "CCP_INDICATOR",
+      "expectedValue": "OCC_HEDGE"
+    },
+    {
+      "field": "COLLATERAL_CURRENCY",
+      "expectedValue": "USD"
+    },
+    {
+      "field": "COLLATERAL_MARGIN",
+      "expectedValue": 0
+    },
+    {
+      "field": "DIVIDEND_RATE",
+      "expectedValue": 0
+    },
+    {
+      "field": "RESET_DATE",
+      "expectedValue": "2025-10-14"
+    },
+    {
+      "field": "SETTLEMENT",
+      "expectedValue": {
+        "partyRole": "BORROWER",
+        "settlementStatus": "NONE",
+        "internalAccountCode": "string",
+        "instruction": {
+          "settlementBic": "string",
+          "localAgentBic": "string",
+          "localAgentName": "string",
+          "localAgentAccount": "string",
+          "dtcParticipantNumber": "string",
+          "cdsCustomerUnitId": "string",
+          "custodianName": "string",
+          "custodianBic": "string",
+          "custodianAccount": "string"
+        }
+      }
+    },
+    {
+      "field": "SETTLEMENT_TYPE",
+      "expectedValue": "DVP"
+    },
+    {
+      "field": "TERM_DATE",
+      "expectedValue": "2025-10-14"
+    },
+    {
+      "field": "TERM_TYPE",
+      "expectedValue": "OPEN"
+    }
+  ]
+}

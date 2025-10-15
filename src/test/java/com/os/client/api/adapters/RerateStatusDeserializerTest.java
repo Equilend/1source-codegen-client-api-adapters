@@ -17,7 +17,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.os.client.model.FloatingRate;
-import com.os.client.model.OneOfLoanLoanStatusReason;
 import com.os.client.model.OneOfRerateStatusReason;
 import com.os.client.model.Rate;
 import com.os.client.model.RebateRate;
@@ -36,7 +35,6 @@ public class RerateStatusDeserializerTest {
 		ObjectMapper objectMapper = new ObjectMapper()
 				.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 				.registerModule(new SimpleModule().addDeserializer(Rate.class, new RateDeserializer()))
-				.registerModule(new SimpleModule().addDeserializer(OneOfLoanLoanStatusReason.class, new LoanStatusDeserializer()))
 				.registerModule(new SimpleModule().addDeserializer(OneOfRerateStatusReason.class, new RerateStatusDeserializer()))
 				.registerModule(new SimpleModule().addDeserializer(LocalDate.class, new LocalDateJacksonDeserializer()))
 				.registerModule(new SimpleModule().addDeserializer(OffsetDateTime.class, new OffsetDateTimeJacksonDeserializer()));
