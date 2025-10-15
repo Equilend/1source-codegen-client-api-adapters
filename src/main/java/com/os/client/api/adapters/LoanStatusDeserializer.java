@@ -8,26 +8,28 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import com.os.client.model.AnyOfLoanDeclineErrorResponseErrorsItems;
-import com.os.client.model.CollateralType;
+import com.os.client.model.CcpIndicator;
 import com.os.client.model.CurrencyCd;
 import com.os.client.model.LoanCancelErrorReason;
 import com.os.client.model.LoanCancelErrorResponse;
 import com.os.client.model.LoanDeclineErrorReason;
 import com.os.client.model.LoanDeclineErrorReasonFieldBillingCurrency;
+import com.os.client.model.LoanDeclineErrorReasonFieldCcpIndicator;
 import com.os.client.model.LoanDeclineErrorReasonFieldCollateralCurrency;
 import com.os.client.model.LoanDeclineErrorReasonFieldCollateralMargin;
-import com.os.client.model.LoanDeclineErrorReasonFieldCollateralType;
 import com.os.client.model.LoanDeclineErrorReasonFieldDividendRate;
-import com.os.client.model.LoanDeclineErrorReasonFieldQuantity;
-import com.os.client.model.LoanDeclineErrorReasonFieldRate;
-import com.os.client.model.LoanDeclineErrorReasonFieldSettlementDate;
+import com.os.client.model.LoanDeclineErrorReasonFieldResetDate;
+import com.os.client.model.LoanDeclineErrorReasonFieldSettlement;
+import com.os.client.model.LoanDeclineErrorReasonFieldSettlementType;
 import com.os.client.model.LoanDeclineErrorReasonFieldTermDate;
 import com.os.client.model.LoanDeclineErrorReasonFieldTermType;
-import com.os.client.model.LoanDeclineErrorReasonFieldTradeDate;
 import com.os.client.model.LoanDeclineErrorResponse;
 import com.os.client.model.OneOfLoanLoanStatusReason;
+import com.os.client.model.PartySettlementInstruction;
+import com.os.client.model.SettlementType;
 import com.os.client.model.TermType;
 
 public class LoanStatusDeserializer extends StdDeserializer<OneOfLoanLoanStatusReason> {
@@ -82,6 +84,16 @@ public class LoanStatusDeserializer extends StdDeserializer<OneOfLoanLoanStatusR
 								}
 								responseErrors.add(loanDeclineErrorReasonFieldBillingCurrency);
 								
+							} else if (LoanDeclineErrorReasonFieldCcpIndicator.FieldEnum
+									.fromValue(field) != null) {
+
+								LoanDeclineErrorReasonFieldCcpIndicator loanDeclineErrorReasonFieldCcpIndicator = new LoanDeclineErrorReasonFieldCcpIndicator();
+								loanDeclineErrorReasonFieldCcpIndicator.setField(LoanDeclineErrorReasonFieldCcpIndicator.FieldEnum.fromValue(field));
+								if (nodeValue != null) {
+									loanDeclineErrorReasonFieldCcpIndicator.setExpectedValue(CcpIndicator.fromValue(nodeValue.textValue()));
+								}
+								responseErrors.add(loanDeclineErrorReasonFieldCcpIndicator);
+
 							} else if (LoanDeclineErrorReasonFieldCollateralCurrency.FieldEnum
 									.fromValue(field) != null) {
 
@@ -92,25 +104,6 @@ public class LoanStatusDeserializer extends StdDeserializer<OneOfLoanLoanStatusR
 								}
 								responseErrors.add(loanDeclineErrorReasonFieldCollateralCurrency);
 
-							} else if (LoanDeclineErrorReasonFieldQuantity.FieldEnum.fromValue(field) != null) {
-
-								LoanDeclineErrorReasonFieldQuantity loanDeclineErrorReasonFieldQuantity = new LoanDeclineErrorReasonFieldQuantity();
-								loanDeclineErrorReasonFieldQuantity.setField(LoanDeclineErrorReasonFieldQuantity.FieldEnum.fromValue(field));
-								if (nodeValue != null) {
-									loanDeclineErrorReasonFieldQuantity.setExpectedValue(nodeValue.intValue());
-								}
-								responseErrors.add(loanDeclineErrorReasonFieldQuantity);
-
-							} else if (LoanDeclineErrorReasonFieldRate.FieldEnum.fromValue(field) != null) {
-
-								LoanDeclineErrorReasonFieldRate loanDeclineErrorReasonFieldRate = new LoanDeclineErrorReasonFieldRate();
-								loanDeclineErrorReasonFieldRate.setField(LoanDeclineErrorReasonFieldRate.FieldEnum.fromValue(field));
-								if (nodeValue != null) {
-									RateDeserializer deserializer = new RateDeserializer();
-									loanDeclineErrorReasonFieldRate.setExpectedValue(deserializer.deserializeLoanRate(nodeValue));
-								}
-								responseErrors.add(loanDeclineErrorReasonFieldRate);
-								
 							} else if (LoanDeclineErrorReasonFieldCollateralMargin.FieldEnum.fromValue(field) != null) {
 
 								LoanDeclineErrorReasonFieldCollateralMargin loanDeclineErrorReasonFieldCollateralMargin = new LoanDeclineErrorReasonFieldCollateralMargin();
@@ -119,15 +112,6 @@ public class LoanStatusDeserializer extends StdDeserializer<OneOfLoanLoanStatusR
 									loanDeclineErrorReasonFieldCollateralMargin.setExpectedValue(nodeValue.doubleValue());
 								}
 								responseErrors.add(loanDeclineErrorReasonFieldCollateralMargin);
-
-							} else if (LoanDeclineErrorReasonFieldCollateralType.FieldEnum.fromValue(field) != null) {
-
-								LoanDeclineErrorReasonFieldCollateralType loanDeclineErrorReasonFieldCollateralType = new LoanDeclineErrorReasonFieldCollateralType();
-								loanDeclineErrorReasonFieldCollateralType.setField(LoanDeclineErrorReasonFieldCollateralType.FieldEnum.fromValue(field));
-								if (nodeValue != null) {
-									loanDeclineErrorReasonFieldCollateralType.setExpectedValue(CollateralType.fromValue(nodeValue.textValue()));
-								}
-								responseErrors.add(loanDeclineErrorReasonFieldCollateralType);
 
 							} else if (LoanDeclineErrorReasonFieldDividendRate.FieldEnum.fromValue(field) != null) {
 
@@ -138,25 +122,33 @@ public class LoanStatusDeserializer extends StdDeserializer<OneOfLoanLoanStatusR
 								}
 								responseErrors.add(loanDeclineErrorReasonFieldDividendRate);
 
-							} else if (LoanDeclineErrorReasonFieldSettlementDate.FieldEnum.fromValue(field) != null) {
+							} else if (LoanDeclineErrorReasonFieldResetDate.FieldEnum.fromValue(field) != null) {
 
-								LoanDeclineErrorReasonFieldSettlementDate loanDeclineErrorReasonFieldSettlementDate = new LoanDeclineErrorReasonFieldSettlementDate();
-								loanDeclineErrorReasonFieldSettlementDate.setField(LoanDeclineErrorReasonFieldSettlementDate.FieldEnum.fromValue(field));
+								LoanDeclineErrorReasonFieldResetDate loanDeclineErrorReasonFieldResetDate = new LoanDeclineErrorReasonFieldResetDate();
+								loanDeclineErrorReasonFieldResetDate.setField(LoanDeclineErrorReasonFieldResetDate.FieldEnum.fromValue(field));
 								if (nodeValue != null) {
 									LocalDateJacksonDeserializer dateDeserializer = new LocalDateJacksonDeserializer();
-									loanDeclineErrorReasonFieldSettlementDate.setExpectedValue(dateDeserializer.deserialize(nodeValue.textValue()));
+									loanDeclineErrorReasonFieldResetDate.setExpectedValue(dateDeserializer.deserialize(nodeValue.textValue()));
 								}
-								responseErrors.add(loanDeclineErrorReasonFieldSettlementDate);
+								responseErrors.add(loanDeclineErrorReasonFieldResetDate);
 
-							} else if (LoanDeclineErrorReasonFieldTradeDate.FieldEnum.fromValue(field) != null) {
+							} else if (LoanDeclineErrorReasonFieldSettlement.FieldEnum.fromValue(field) != null) {
 
-								LoanDeclineErrorReasonFieldTradeDate loanDeclineErrorReasonFieldTradeDate = new LoanDeclineErrorReasonFieldTradeDate();
-								loanDeclineErrorReasonFieldTradeDate.setField(LoanDeclineErrorReasonFieldTradeDate.FieldEnum.fromValue(field));
+								LoanDeclineErrorReasonFieldSettlement loanDeclineErrorReasonFieldSettlement = new LoanDeclineErrorReasonFieldSettlement();
+								loanDeclineErrorReasonFieldSettlement.setField(LoanDeclineErrorReasonFieldSettlement.FieldEnum.fromValue(field));
 								if (nodeValue != null) {
-									LocalDateJacksonDeserializer dateDeserializer = new LocalDateJacksonDeserializer();
-									loanDeclineErrorReasonFieldTradeDate.setExpectedValue(dateDeserializer.deserialize(nodeValue.textValue()));
+									loanDeclineErrorReasonFieldSettlement.setExpectedValue((new ObjectMapper()).convertValue(nodeValue, PartySettlementInstruction.class));
 								}
-								responseErrors.add(loanDeclineErrorReasonFieldTradeDate);
+								responseErrors.add(loanDeclineErrorReasonFieldSettlement);
+
+							} else if (LoanDeclineErrorReasonFieldSettlementType.FieldEnum.fromValue(field) != null) {
+
+								LoanDeclineErrorReasonFieldSettlementType loanDeclineErrorReasonFieldSettlementType = new LoanDeclineErrorReasonFieldSettlementType();
+								loanDeclineErrorReasonFieldSettlementType.setField(LoanDeclineErrorReasonFieldSettlementType.FieldEnum.fromValue(field));
+								if (nodeValue != null) {
+									loanDeclineErrorReasonFieldSettlementType.setExpectedValue(SettlementType.fromValue(nodeValue.textValue()));
+								}
+								responseErrors.add(loanDeclineErrorReasonFieldSettlementType);
 
 							} else if (LoanDeclineErrorReasonFieldTermDate.FieldEnum.fromValue(field) != null) {
 
