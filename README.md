@@ -1,6 +1,9 @@
 # 1source-codegen-client-api-adapters
 1Source Client API Adapter Library to help translate between JSON, Java Objects, and back.
 
+- version: 1.2.2.5
+  - Build date: @timestamp
+
 ## Requirements
 
 Building the API client adapter library requires:
