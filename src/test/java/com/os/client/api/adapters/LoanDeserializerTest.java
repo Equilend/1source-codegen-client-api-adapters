@@ -18,12 +18,12 @@ import com.fasterxml.jackson.databind.DatabindException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.os.client.model.AnyOfLoanDeclineErrorResponseErrorsItems;
 import com.os.client.model.Loan;
 import com.os.client.model.LoanDeclineErrorReason;
 import com.os.client.model.LoanDeclineErrorResponse;
 import com.os.client.model.OneOfLoanLoanStatusReason;
 import com.os.client.model.Rate;
-import com.os.client.model.AnyOfLoanDeclineErrorResponseErrorsItems;
 
 public class LoanDeserializerTest {
 
