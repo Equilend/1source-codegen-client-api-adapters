@@ -6,6 +6,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -137,7 +138,9 @@ public class LoanStatusDeserializer extends StdDeserializer<OneOfLoanLoanStatusR
 								LoanDeclineErrorReasonFieldSettlement loanDeclineErrorReasonFieldSettlement = new LoanDeclineErrorReasonFieldSettlement();
 								loanDeclineErrorReasonFieldSettlement.setField(LoanDeclineErrorReasonFieldSettlement.FieldEnum.fromValue(field));
 								if (nodeValue != null) {
-									loanDeclineErrorReasonFieldSettlement.setExpectedValue((new ObjectMapper()).convertValue(nodeValue, PartySettlementInstruction.class));
+									TypeReference<List<PartySettlementInstruction>> jacksonTypeReference = new TypeReference<List<PartySettlementInstruction>>() {};
+
+									loanDeclineErrorReasonFieldSettlement.setExpectedValue((new ObjectMapper()).convertValue(nodeValue, jacksonTypeReference));
 								}
 								responseErrors.add(loanDeclineErrorReasonFieldSettlement);
 
