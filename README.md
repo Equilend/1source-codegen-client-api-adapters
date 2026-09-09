@@ -1,7 +1,7 @@
 # 1source-codegen-client-api-adapters
 1Source Client API Adapter Library to help translate between JSON, Java Objects, and back.
 
-- version: 1.3.0
+- version: 1.3.1
   - Build date: @timestamp
 
 ## Requirements
@@ -34,7 +34,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.os</groupId>
   <artifactId>1source-api-client-adapters</artifactId>
-  <version>1.3.0</version>
+  <version>1.3.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -85,7 +85,7 @@ Also, to use the GitHub Packages repository for downloading SNAPSHOT artifacts, 
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.os:1source-api-client:1.3.0"
+compile "com.os:1source-api-client:1.3.1"
 ```
 
 Add the repository to your build.gradle file (Gradle Groovy). Replace USERNAME with your GitHub username, and TOKEN with your personal access token that has read:packages permission.
@@ -111,6 +111,6 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/1source-api-client-adapters-1.3.0.jar`
+* `target/1source-api-client-adapters-1.3.1.jar`
 * `target/lib/*.jar`
 

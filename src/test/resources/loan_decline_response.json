@@ -27,22 +27,24 @@
     },
     {
       "field": "SETTLEMENT",
-      "expectedValue": {
-        "partyRole": "BORROWER",
-        "settlementStatus": "NONE",
-        "internalAccountCode": "string",
-        "instruction": {
-          "settlementBic": "string",
-          "localAgentBic": "string",
-          "localAgentName": "string",
-          "localAgentAccount": "string",
-          "dtcParticipantNumber": "string",
-          "cdsCustomerUnitId": "string",
-          "custodianName": "string",
-          "custodianBic": "string",
-          "custodianAccount": "string"
+      "expectedValue": [
+        {
+          "partyRole": "BORROWER",
+          "settlementStatus": "NONE",
+          "internalAccountCode": "string",
+          "instruction": {
+            "settlementBic": "string",
+            "localAgentBic": "string",
+            "localAgentName": "string",
+            "localAgentAccount": "string",
+            "dtcParticipantNumber": "string",
+            "cdsCustomerUnitId": "string",
+            "custodianName": "string",
+            "custodianBic": "string",
+            "custodianAccount": "string"
+          }
         }
-      }
+      ]
     },
     {
       "field": "SETTLEMENT_TYPE",
